@@ -10,7 +10,7 @@ $(function(){
 
 
   function addBook(book){
-  	var newRow = $(`<tr class="title"><td>${book.title}</td><td>${book.author}
+  	var newRow = $(`<tr><td class="title">${book.title}</td><td>${book.author}
   		</td><td><a href="#" data-id="${book.id}" data-method="DELETE">Delete
   		</a></td></tr>`);
   	$(".table").append(newRow);
@@ -25,9 +25,10 @@ $(function(){
   };
 
   var table = $(".table");
-  table.on("click", "tr", function(){
+  table.on("click", ".title", function(){
+    console.log(this);
   	
-  	$(this).next().toggle();
+  	$(this).parent().next().toggle();
 
   });
 
