@@ -16,9 +16,9 @@ $(function(){
   	$(".table").append(newRow);
 
   	var divUnderTitle = $(`<div class="details" style="display: none ">
-  								isbn:${book.isbn}
-  								publisher: ${book.publisher}
-  								type: ${book.type}
+  								<b>isbn:</b> ${book.isbn}<br>
+  								<b>publisher:</b> ${book.publisher}<br>
+  								<b>type:</b> ${book.type}
   							</div>`);
   	$(".table tr").last().after(divUnderTitle);
 
