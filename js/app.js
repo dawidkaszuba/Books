@@ -88,12 +88,13 @@ function saveBook(newBook){
     deleteBook(bookId);
     removeRow(this);
 
-  
   });
 
   function removeRow(deleteButton){
     var deleteButton;
+    $(deleteButton).parent().parent().next().remove();
     $(deleteButton).parent().parent().remove();
+
   }
 
 });
