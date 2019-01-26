@@ -46,12 +46,17 @@ var submit = $(".btn-primary");
 submit.on("click", function(event){
  event.preventDefault();
   var newBook = getBookFromForm();
+  if(validateForm(newBook)){
   saveBook(newBook);
+}else {
+  window.alert("Popraw formularz");
+}
   
 });
 
 
 function saveBook(newBook){
+
 
         $.ajax({
     url: "http://localhost:8282/books/",
@@ -95,6 +100,18 @@ function saveBook(newBook){
     $(deleteButton).parent().parent().next().remove();
     $(deleteButton).parent().parent().remove();
 
+  }
+
+  function validateForm(newBook) {
+      if((newBook.title==="") || (newBook.author==="") || (newBook.isbn==="") 
+        || (newBook.isbn===null) || (newBook.publisher==="") || (newBook.type==="")){
+         return false;
+       if(isNaN(newBook.isbn)){
+          return false;
+       }
+     }
+
+    return true;
   }
 
 });
