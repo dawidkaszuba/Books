@@ -44,27 +44,26 @@ $(function(){
 var submit = $(".btn-primary");
 
 submit.on("click", function(event){
- event.preventDefault();
-  var newBook = getBookFromForm();
-  if(validateForm(newBook)){
-  saveBook(newBook);
-}else {
-  window.alert("Popraw formularz");
-}
+    event.preventDefault();
+      var newBook = getBookFromForm();
+        if(validateForm(newBook)){
+           saveBook(newBook);
+        }else {
+          window.alert("Popraw formularz");
+      }
   
 });
 
 
 function saveBook(newBook){
 
-
-        $.ajax({
-    url: "http://localhost:8282/books/",
-    data: JSON.stringify(newBook),
-    type: "POST",
-    dataType: "json",
-     headers: {
-            "Content-Type": "application/json"
+    $.ajax({
+        url: "http://localhost:8282/books/",
+        data: JSON.stringify(newBook),
+        type: "POST",
+        dataType: "json",
+        headers: {
+                "Content-Type": "application/json"
         }
     }).done(addBook(newBook))
       .fail(function(xhr,status,err) {
@@ -75,9 +74,9 @@ function saveBook(newBook){
 
   function deleteBook(id){
 
-            $.ajax({
-    url: `http://localhost:8282/books/${id}`,
-    type: "DELETE",
+    $.ajax({
+      url: `http://localhost:8282/books/${id}`,
+      type: "DELETE",
     
     }).done(function(result) {
 }).fail(function(xhr,status,err) {
