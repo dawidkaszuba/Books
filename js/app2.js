@@ -4,11 +4,11 @@ $(function(){
 
 	function doAjax(method,id,newBook){
 
-		var path = "http://localhost:8282/books/"
+		var path = "http://localhost:8080/books/"
 
 			if(id!=undefined){
 
-				path = `http://localhost:8282/books/${id}`
+				path = `http://localhost:8080/books/${id}`
 			}
 
 			switch(method) {
