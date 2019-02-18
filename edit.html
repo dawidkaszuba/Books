@@ -1,49 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Catalog of books</title>
+	<title>Edit</title>
 </head>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
           integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 <body>
 	<div class="container">
 
-		<h1>Catalog of books</h1>
-		<h2>add new book</h2>
+			<h2>edit book:</h2>
 			<form class="row newBook">
 				<div class="col-md-6">
 				   <div class="form-group">
-					    <label for="title">title</label>
-					    <input type="text" class="form-control" name="title" placeholder="insert title">
+					    <label for="title" >title</label>
+					    <input type="hidden" class="form-control" name="id" id="id">
+					    <input type="text" class="form-control" name="title" id="title">
 				   </div>
 				   <div class="form-group">
-					    <label for="author">author</label>
-					    <input type="text" class="form-control" name="author" placeholder="insert author">
+					    <label for="author" >author</label>
+					    <input type="text" class="form-control" name="author" id="author">
 				   </div>
 				   <div class="form-group">
-				   		<label for="isbn">isbn</label>
-					    <input type="number" class="form-control" name="isbn" placeholder="insert isbn">
+				   		<label for="isbn" >isbn</label>
+					    <input type="number" class="form-control" name="isbn" id="isbn">
 				   </div>
 				 </div>
 				 <div class="col-md-6">
 				   <div class="form-group">
-				   		<label for="publisher">publisher</label>
-					    <input type="text" class="form-control" name="publisher" placeholder="insert publisher">
+				   		<label for="publisher" >publisher</label>
+					    <input type="text" class="form-control" name="publisher" id="publisher">
 				   </div>
 				    <div class="form-group">
 				   		<label for="type">type</label>
-					    <input type="text" class="form-control" name="type" placeholder="insert type">
+					    <input type="text" class="form-control" name="type" id="type">
 				   </div>
 				</div>
-				  <button type="submit" class="btn btn-primary" data-method="POST">Add</button>
+				  <button type="submit" class="btn btn-primary" data-method="PUT">Save</button>
 			</form>
-		
-		<h2>list:</h2>
-		<table class="table">
-			<tr><th>Title</th><th>Author</th><th>&nbsp</th></tr>
-
-		</table>
-
+				
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
 	                integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
@@ -51,7 +45,7 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
 	                integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
 	                crossorigin="anonymous"></script>
-	<script src="js/app2.js"></script>
+	<script src="js/app3.js"></script>
 	</div>
 </body>
 </html>

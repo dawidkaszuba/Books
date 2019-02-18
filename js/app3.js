@@ -1,10 +1,14 @@
 $(function(){
 
-  doAjax("GET");
+  var paramWithName = window.location.search;
+  var param = paramWithName.substring(4,paramWithName.length);
+
+  doAjax("GET",param);
+
 
 	function doAjax(method,id,newBook){
 
-		var path = "http://localhost:8080/books/"
+		 var path = "http://localhost:8080/books/"
 
 			if(id!=undefined){
 
@@ -12,12 +16,7 @@ $(function(){
 			}
 
 			switch(method) {
-				case "DELETE": 
-				 		$.ajaxSetup({
-		            		url: path 
-	        			});
-	        			break;
-	        	case "POST":
+					 case "PUT":
 	        			$.ajaxSetup({
 		            		data: JSON.stringify(newBook)
 		             	});
@@ -31,9 +30,9 @@ $(function(){
 		            		dataType: "json"
 		             	});
 
-						$.ajaxSetup({
-		            		success: newBook => addBook(newBook)
-		             	});
+						// $.ajaxSetup({
+		    //         		success: newBook => addBook(newBook)
+		    //          	});
 		             	break;
 		        case "GET":
 		         		$.ajaxSetup({
@@ -45,7 +44,7 @@ $(function(){
 		            		dataType: "json"
 		             	});
 						$.ajaxSetup({
-		            		success: books => populate(books)
+		            		success: book => fillGaps(book)
 		             	});
 		             	break;
            
@@ -62,36 +61,19 @@ $(function(){
 
   }
 
-
-   var table = $(".table");
-
-   table.on("click","#delete", function(){
-
-   var bookId = $(this).data("id");
-   var method = $(this).data("method");
-   doAjax(method,bookId);
-   removeRow(this);
-
-  });
-
-    table.on("click","#edit", function(){
-
-   var bookId = $(this).data("id");
-   var method = $(this).data("method");
-   doAjax(method,bookId);
-   
-
-  });
-
    
   var submit = $(".btn-primary");
 
-  submit.on("click", function(){
+  submit.on("click", function(event){
+
+        event.preventDefault();
         var newBook = getBookFromForm();
         var method = $(this).data("method");
         if(validateForm(newBook)){
-           var id;
-           doAjax(method,id,newBook);
+          
+          doAjax(method,newBook.id,newBook);
+          window.location.replace("index.html");
+       
         }else {
           window.alert("Popraw formularz");
       }
@@ -111,7 +93,8 @@ $(function(){
 function addBook(book){
   	var newRow = $(`<tr><td class="title">${book.title}</td><td>${book.author}
   		</td><td><a href="#" data-id="${book.id}" data-method="DELETE" id="delete">Delete
-  		</a></td><td><a href="edit.html?id=${book.id}">Edit</a></td></tr>`);
+  		</a></td><td><a href="edit.html" data-id="${book.id}" data-method="GET" id="edit">Edit
+      </a></td></tr>`);
   	$(".table").append(newRow);
 
   	var divUnderTitle = $(`<div class="details" style="display: none ">
@@ -126,6 +109,7 @@ function addBook(book){
 
 function getBookFromForm(){
     return{
+      id:$(".newBook input[name=id]").val(),
       title:$(".newBook input[name=title]").val(),
       author:$(".newBook input[name=author]").val(),
       isbn:$(".newBook input[name=isbn]").val(),
@@ -155,10 +139,21 @@ function removeRow(deleteButton){
   }
 
 
-function populate(books){
-   	 for (var book of books) {
-            addBook(book);
-        }
+function fillGaps(book){
+   	 var id = $("#id");
+     var title = $("#title");
+     var author = $("#author");
+     var isbn = $("#isbn");
+     var publisher = $("#publisher");
+     var type = $("#type");
+
+     id.attr("value", book.id);
+     title.attr("value", book.title);
+     author.attr("value", book.author);
+     isbn.attr("value", book.isbn);
+     publisher.attr("value", book.publisher);
+     type.attr("value", book.type);
+
    }
 
 
