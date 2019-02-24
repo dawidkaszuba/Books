@@ -4,11 +4,13 @@ $(function(){
 
 	function doAjax(method,id,newBook){
 
-		var path = "http://localhost:8080/books/"
+		//var path = "http://localhost:8080/books/"
+		var path = "https://catalogofbooks.herokuapp.com/books/"
 
 			if(id!=undefined){
 
-				path = `http://localhost:8080/books/${id}`
+				//path = `http://localhost:8080/books/${id}`
+				path = `https://catalogofbooks.herokuapp.com/books/${id}`
 			}
 
 			switch(method) {
@@ -105,11 +107,29 @@ $(function(){
 
   });
 
+  var searchButton = $("#search");
+  
+  searchButton.on("click", function(event){
+      event.preventDefault();
+      var titles = $(".title");
+      var searchTitle = $("#searchTitle");
+      var title = searchTitle.val();
+      console.log(title);
+
+      for (var i = 0; i<titles.length;i++){
+        if(titles[i].textContent.includes(title)){
+          var bookId = $(titles[i]).data("id");
+          doAjax("GET",bookId);
+          break;
+        }
+      }
+
+  })
 
 
 
 function addBook(book){
-  	var newRow = $(`<tr><td class="title">${book.title}</td><td>${book.author}
+  	var newRow = $(`<tr><td data-id="${book.id}" class="title">${book.title}</td><td>${book.author}
   		</td><td><a href="#" data-id="${book.id}" data-method="DELETE" id="delete">Delete
   		</a></td><td><a href="edit.html?id=${book.id}">Edit</a></td></tr>`);
   	$(".table").append(newRow);
@@ -156,6 +176,7 @@ function removeRow(deleteButton){
 
 
 function populate(books){
+  
    	 for (var book of books) {
             addBook(book);
         }

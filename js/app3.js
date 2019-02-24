@@ -8,11 +8,13 @@ $(function(){
 
 	function doAjax(method,id,newBook){
 
-		 var path = "http://localhost:8080/books/"
+		  //var path = "http://localhost:8080/books/"
+    var	path = "https://catalogofbooks.herokuapp.com/books/"
 
 			if(id!=undefined){
 
-				path = `http://localhost:8080/books/${id}`
+		    //path = `http://localhost:8080/books/${id}`
+        path = `https://catalogofbooks.herokuapp.com/books/${id}`
 			}
 
 			switch(method) {
@@ -30,10 +32,7 @@ $(function(){
 		            		dataType: "json"
 		             	});
 
-						// $.ajaxSetup({
-		    //         		success: newBook => addBook(newBook)
-		    //          	});
-		             	break;
+			             break;
 		        case "GET":
 		         		$.ajaxSetup({
 		            		headers: {
