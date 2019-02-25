@@ -5,7 +5,7 @@ $(function(){
 	function doAjax(method,id,newBook){
 
 		//var path = "http://localhost:8080/books/"
-		var path = "https://catalogofbooks.herokuapp.com/books/"
+		var path = "https://catalogofbooks.herokuapp.com/books"
 
 			if(id!=undefined){
 
@@ -94,7 +94,7 @@ $(function(){
         if(validateForm(newBook)){
            var id;
            doAjax(method,id,newBook);
-        }else {
+            }else {
           window.alert("Popraw formularz");
       }
   
@@ -107,29 +107,29 @@ $(function(){
 
   });
 
-  var searchButton = $("#search");
+  // var searchButton = $("#search");
   
-  searchButton.on("click", function(event){
-      event.preventDefault();
-      var titles = $(".title");
-      var searchTitle = $("#searchTitle");
-      var title = searchTitle.val();
-      console.log(title);
+  // searchButton.on("click", function(event){
+  //     event.preventDefault();
+  //     var titles = $(".title");
+  //     var searchTitle = $("#searchTitle");
+  //     var title = searchTitle.val();
+  //     console.log(title);
 
-      for (var i = 0; i<titles.length;i++){
-        if(titles[i].textContent.includes(title)){
-          var bookId = $(titles[i]).data("id");
-          doAjax("GET",bookId);
-          break;
-        }
-      }
+  //     for (var i = 0; i<titles.length;i++){
+  //       if(titles[i].textContent.includes(title)){
+  //         var bookId = $(titles[i]).data("id");
+  //         doAjax("GET",bookId);
+  //         break;
+  //       }
+  //     }
 
-  })
+  // })
 
 
 
 function addBook(book){
-  	var newRow = $(`<tr><td data-id="${book.id}" class="title">${book.title}</td><td>${book.author}
+  	var newRow = $(`<tr><td class="title">${book.title}</td><td>${book.author}
   		</td><td><a href="#" data-id="${book.id}" data-method="DELETE" id="delete">Delete
   		</a></td><td><a href="edit.html?id=${book.id}">Edit</a></td></tr>`);
   	$(".table").append(newRow);
